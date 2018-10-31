@@ -1,6 +1,15 @@
 # S3-Downloader
 AWS S3 Downloader
 
+---
+
+First, install AWS CLI
+
+https://docs.aws.amazon.com/en_us/cli/latest/userguide/installing.html
+
+---
+
+
 ```
 Usage: bash s3Download.sh {BUCKET NAME} --path={PATH NAME} [-rR]
 Options:
