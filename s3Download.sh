@@ -52,9 +52,13 @@ else
 		URI="${S3}${FILE}"
 		FNAME=$(basename "${FILE}")
 		if [[ $FNAME == *.* ]]; then
-			printf "[${x}] Downloading ${FNAME}...\n"
-			DL=$(curl -sD - "${URI}" -o ${OUTPUT_DIR}${FNAME})
-			x=$(($x + 1))
+			if ! [[ -f ${OUTPUT_DIR}${FNAME} ]]; then
+				printf "[${x}] Downloading ${FNAME}...\n"
+				DL=$(curl -sD - "${URI}" -o ${OUTPUT_DIR}${FNAME})
+				x=$(($x + 1))
+			else
+				printf "[-] Skip ${FNAME}\n"
+			fi
 		fi
 	done < <(${AWS_S3})
 fi
